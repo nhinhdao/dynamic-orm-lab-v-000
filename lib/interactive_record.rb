@@ -10,6 +10,9 @@ class InteractiveRecord
     def self.column_names
         DB[:conn].execute("pragma table_info('#{table_name}')").map { |row|  row['name']}.compact
     end
+
+    def initialize(options ={})
+        options.each {|key, value| self.send("#{key}=", "#{value}")}
     #table_name_for_insert
     def table_name_for_insert
         self.class.table_name
@@ -32,7 +35,7 @@ class InteractiveRecord
     end
     #6. 2find_by_name
     def self.find_by_name(name)
-        sql = "select * from #{table_name} where name = ?"
+        sql = "select * from #{self.table_name} where name = ?"
         DB[:conn].execute(sql, name)
     end
     #7. find_by
