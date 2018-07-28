@@ -26,7 +26,7 @@ class InteractiveRecord
     def values_for_insert
         values = []
         self.class.column_names.each do |col_name|
-          values << "'#{send(col_name)}'" unless col_name == 'id'#send(col_name).nil?
+          values << "'#{send(col_name)}'" unless col_name == 'id'
         end
         values.join(", ")
     end
