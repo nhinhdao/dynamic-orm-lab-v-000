@@ -42,7 +42,9 @@ class InteractiveRecord
         DB[:conn].execute(sql, name)
     end
     #7. find_by
-    def self.find_by(attribute)
+    def self.find_by(hash)
+        sql = "select * from #{self.table_name} where #{hash.flatten[0]} = #{hash.flatten[1]}"
+        DB[:conn].execute(sql)
     end
     # binding.pry
 end
