@@ -24,7 +24,7 @@ class InteractiveRecord
         self.class.column_names.each {|col_name| values << "'#{send(col_name)}'" unless send(col_name).nil?}
         values.join(", ")
     end
-    #5. save method 
+    #5. save method
     def save
         sql = "insert into #{table_name_for_insert} (#{col_names_for_insert}) values (#{values_for_insert})"
         DB[:conn].execute(sql)
@@ -38,5 +38,5 @@ class InteractiveRecord
     #7. find_by
     def self.find_by(attribute)
     end
-    
+
 end
